@@ -1,0 +1,9 @@
+{
+	"user_id_list": ["3810104105"],
+    "filter": 1,
+    "since_date": "2018-09-01",
+    "write_mode": ["csv", "txt"],
+    "pic_download": 1,
+    "video_download": 1,
+    "cookie": "SSOLoginState=1577057751; SUB=_2A25w-42HDeRhGeBO7FsX8y_FwzyIHXVQBxPPrDV6PUJbktANLWakkW1NRaAXdBKwio5ZmNXkfrWRqsqF_x0qeF4s; SUBP=0033WrSXqPxfM725Ws9jqgMF55529P9D9W5GJjnSd_wFkARUlb2muC_35JpX5KzhUgL.Foq7S0.ce0241h52dJLoI7yWIHiaqc_LU5tt; SUHB=09P9nLB_mgDM2_; _T_WM=25934924811; WEIBOCN_FROM=1110006030; MLOGIN=1; M_WEIBOCN_PARAMS=uicode%3D20000174"
+}
