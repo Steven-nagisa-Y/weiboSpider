@@ -1,6 +1,4 @@
-
 # -*- coding: UTF-8 -*-
-
 import codecs
 import csv
 import json
@@ -112,6 +110,11 @@ class Weibo(object):
 		except Exception as e:
 			print('Error: ', e)
 			traceback.print_exc()
+
+
+# Edited
+	
+# End
 
 	def get_nickname(self):
 		"""获取用户昵称"""
@@ -509,32 +512,35 @@ class Weibo(object):
 			else:
 				describe = u'视频'
 				key = 'video_url'
-			print(u'即将进行%s下载' % describe)
-			file_dir = self.get_filepath(type)
-			for w in tqdm(self.weibo, desc='Download progress'):
-				if w[key] != u'无':
-					file_prefix = w['publish_time'][:11].replace(
-						'-', '') + '_' + w['id']
-					if type == 'img' and ',' in w[key]:
-						w[key] = w[key].split(',')
-						for j, url in enumerate(w[key]):
-							file_suffix = url[url.rfind('.'):]
-							file_name = file_prefix + '_' + str(
-								j + 1) + file_suffix
-							file_path = file_dir + os.sep + file_name
-							self.download_one_file(url, file_path, type,
-												   w['id'])
-					else:
-						if type == 'video':
-							file_suffix = '.mp4'
+			if self.got_num == 0:
+				print('没有微博需要下载。')
+			else:
+				print(u'即将进行%s下载' % describe)
+				file_dir = self.get_filepath(type)
+				for w in tqdm(self.weibo, desc='Download progress'):
+					if w[key] != u'无':
+						file_prefix = w['publish_time'][:11].replace(
+							'-', '') + '_' + w['id']
+						if type == 'img' and ',' in w[key]:
+							w[key] = w[key].split(',')
+							for j, url in enumerate(w[key]):
+								file_suffix = url[url.rfind('.'):]
+								file_name = file_prefix + '_' + str(
+									j + 1) + file_suffix
+								file_path = file_dir + os.sep + file_name
+								self.download_one_file(url, file_path, type,
+													   w['id'])
 						else:
-							file_suffix = w[key][w[key].rfind('.'):]
-						file_name = file_prefix + file_suffix
-						file_path = file_dir + os.sep + file_name
-						self.download_one_file(w[key], file_path, type,
+							if type == 'video':
+								file_suffix = '.mp4'
+							else:
+								file_suffix = w[key][w[key].rfind('.'):]
+							file_name = file_prefix + file_suffix
+							file_path = file_dir + os.sep + file_name
+							self.download_one_file(w[key], file_path, type,
 											   w['id'])
-			print(u'%s下载完毕,保存路径:' % describe)
-			print(file_dir)
+				print(u'%s下载完毕,保存路径:' % describe)
+				print(file_dir)
 		except Exception as e:
 			print('Error: ', e)
 			traceback.print_exc()
